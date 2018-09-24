@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'development';
 const config = require('./config/config.js');
 
 // modules
-const express = require('express')();
+const express = require('express');
 const app = express();
 const testRouter = require('./routes/testRoute');
 /*
