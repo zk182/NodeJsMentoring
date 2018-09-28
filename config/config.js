@@ -1,6 +1,5 @@
 //Config file
 
-
 // requires
 const _ = require('lodash');
 
