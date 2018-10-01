@@ -7,13 +7,6 @@ const express = require('express');
 const app = express();
 const testRouter = require('./routes/testRoute');
 
-//redis
-const redis = require('redis');
-const client = redis.createClient({
-    port      : global.gConfig.node_port,
-    host      : 'localhost'
-});
-
 //config file
 app.get('/', (req, res) => res.json(global.gConfig));
 

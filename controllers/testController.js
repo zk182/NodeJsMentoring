@@ -1,16 +1,11 @@
 const axios = require('axios');
-const redis = require('redis');
+const client = require('../config/db.js')
+
 let testController = function (){
 
     let getPage = function(req, res){
         let url = req.query.url;
         
-        const client = redis.createClient({
-            port      : global.gConfig.node_port,
-            host      : 'localhost'
-        });
-
-
         const getRedisUrlData = () => {
             client.get(url, function(error, data) {
                 if (error) throw error;
@@ -18,16 +13,16 @@ let testController = function (){
             });
         }
 
-        const fetchUrlData = () => {
+        const fetchUrlData = async () => {
             try {
                 return await axios.get(url)
             } catch (error) {
-                console.error(error)
+                //console.error(error)
             }
         }
 
         const resolveUrl = async () => {
-            client.set(url, 'esta funcionando');
+            client.set(url, 'hola');
             const urlData = getRedisUrlData(url);
             if (urlData){
                 //Expired
@@ -36,6 +31,7 @@ let testController = function (){
             }
             else {
                 //Fetch
+                console.log('no existe');
                 const fetchUrl = await fetchUrlData()
             }
         }
