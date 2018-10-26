@@ -1,15 +1,15 @@
 // config variables
-process.env.NODE_ENV = 'development';
 const config = require('./config/config.js');
 
 // modules
 const express = require('express');
 const app = express();
-const testRouter = require('./routes/testRoute');
+const routes = require('./routes');
+// pasar a --> { X }
 
 //config file
-app.get('/', (req, res) => res.json(global.gConfig));
+app.get('/', (req, res) => res.json(config));
 
 //routes
-app.use('/test', testRouter);
-app.listen(global.gConfig.node_port, () => console.log(`Listening on port ${global.gConfig.node_port}`));
+app.use('/test', routes);
+app.listen(config.node_port, () => console.log(`Listening on port ${config.node_port}`));
