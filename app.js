@@ -5,7 +5,6 @@ const config = require('./config/config.js');
 const express = require('express');
 const app = express();
 const routes = require('./routes');
-// pasar a --> { X }
 
 //config file
 app.get('/', (req, res) => res.json(config));
